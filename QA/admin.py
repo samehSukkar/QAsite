@@ -3,13 +3,16 @@ from .models import Question , Answer
 # Register your models here.
 
 
-admin.site.register(Answer)
 
 
 class QuestionAdmin(admin.ModelAdmin):
    
-           list_display = ('title', 'publish_date')
+    list_display = ('title', 'publish_date')
 
 
+class AnswerAdmin(admin.ModelAdmin):
+    list_display = ('question','author')
 
+
+admin.site.register(Answer,AnswerAdmin)
 admin.site.register(Question,QuestionAdmin)
