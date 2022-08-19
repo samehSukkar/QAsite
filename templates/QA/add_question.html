@@ -7,9 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    {%for q in questions %}
-    <p> <a href ="{% url 'question' q.id %}">{{ forloop.counter }}    >>  {{q.title}}</a></p>
-        
-    {%endfor%}
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>submit</button>
+    </form>
 </body>
 </html>

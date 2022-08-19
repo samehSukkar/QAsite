@@ -7,6 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    {{question}}
+    <h1>{{question}}</h1>
+    <p>
+        {{question.text}}
+    </p>
+    <h3>answer{{ answers | pluralize}}</h3>
+    {% for ans in answers %}
+
+        <h4>{{ans.author}}</h4>
+        <p>{{ans.text}}</p><br><br>
+    {%endfor%}
+
+    {% if   request.user.is_authenticated %}
+   
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>submit</button>
+    </form>
+    {% endif %}
+   
 </body>
 </html>
