@@ -2,7 +2,7 @@ from urllib import request
 from django.http import HttpResponse 
 from django.shortcuts import render , redirect
 from django.shortcuts import get_object_or_404
-from .models import Question , Answer
+from .models import Question , Answer , Category
 from .forms import AnswerForm , QuestionForm
 from django.contrib.auth.decorators import login_required
 
@@ -64,3 +64,20 @@ def add_question(request):
     
     return render(request ,  'QA\\add_question.html', { 'form' : form})
 
+
+
+def category(request , category_name):
+
+   questions = Question.objects.filter(category__name=category_name)
+
+
+   return render(request , 'QA\\category.html', { 'cat':category_name , 'questions':questions })
+
+
+
+
+
+
+def category_list(request):
+    categories = Category.objects.exclude(name="default")
+    return {'category_list' : categories}

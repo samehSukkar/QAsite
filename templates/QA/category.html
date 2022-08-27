@@ -7,10 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    {%for c in category_list %}
-    <p> <a href ="{% url 'category' c.name %}">{{ forloop.counter }}    >>  {{c.name}}</a></p>
-        
-    {%endfor%}
     {%for q in questions %}
     <p> <a href ="{% url 'question' q.id %}">{{ forloop.counter }}    >>  {{q.title}}</a></p>
         

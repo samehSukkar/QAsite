@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question , Answer
+from . import models
 # Register your models here.
 
 
@@ -14,5 +14,6 @@ class AnswerAdmin(admin.ModelAdmin):
     list_display = ('question','author')
 
 
-admin.site.register(Answer,AnswerAdmin)
-admin.site.register(Question,QuestionAdmin)
+admin.site.register(models.Answer,AnswerAdmin)
+admin.site.register(models.Question,QuestionAdmin)
+admin.site.register(models.Category)
