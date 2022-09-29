@@ -24,16 +24,16 @@
     <!-- categories -->
     <div class="categories-section">
       <div class="container py-5 text-center">
-        <h3>categories</h3>
+        <h3 class="pb-4">categories</h3>
         <div class="row ">
 
-          {% for cat in category_list%}
+          {% for cat in category_list|slice:":4"%}
           
             <div class="col-md-6 col-lg-4 col-xxl-3 my-4">
               <div  class="card mx-auto" style="width: 18rem;">
                 <img src="{{cat.image.url}}" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
-                  <a href="#" class="stretched-link text-decoration-none text-dark text-uppercase"> <h5 class="card-title"> {{cat.name}} </h5> </a>                  
+                  <a href="{% url 'category' cat.name %}" class="stretched-link text-decoration-none text-dark text-uppercase"> <h5 class="card-title"> {{cat.name}} </h5> </a>                  
                 </div>
               </div>
             </div>

@@ -86,3 +86,10 @@ def category_list(request):
 
 def categories(request):
     return render(request , "QA\\all_categories.html")
+
+
+
+
+
+def profile(request):
+    return render(request , "QA\\profile.html")

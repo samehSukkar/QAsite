@@ -1,9 +1,15 @@
 {% extends "QA//base.html" %}
 {%block content%}
 
-    {%for q in questions %}
-    <p> <a href ="{% url 'question' q.id %}">{{ forloop.counter }}    >>  {{q.title}}</a></p>
-        
-    {%endfor%}
+    <div class="container h-custom">
+
+
+        {%for q in questions  %}
+        <p> <a href ="{% url 'question' q.id %}">{{ forloop.counter }}    >>  {{q.title}}</a></p>
+            
+        {%endfor%}
+
+    </div>
+ 
 
 {%endblock%}

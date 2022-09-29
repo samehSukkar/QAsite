@@ -1,0 +1,14 @@
+{% extends "QA\\base.html"%}
+
+{%block content %}
+<h3> this is {{ user.get_username }} profile</h3>
+
+{% for question in user.question_set.all %}
+
+<p> <a href ="{% url 'question' question.id %}">{{ forloop.counter }}    >>  {{question.title}}</a></p>
+    
+{%endfor%}
+
+
+
+{%endblock%}

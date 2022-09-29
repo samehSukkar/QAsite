@@ -65,3 +65,10 @@
     background-image: url("../images/qm-blue.png");
     background-size: 200px;
 }
+
+
+
+.h-custom {
+    min-height: calc(100vh - 73px);
+    
+    }
