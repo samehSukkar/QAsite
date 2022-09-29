@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "QA//base.html" %}
+{%block content%}
+
     {%for q in questions %}
     <p> <a href ="{% url 'question' q.id %}">{{ forloop.counter }}    >>  {{q.title}}</a></p>
         
     {%endfor%}
-</body>
-</html>
+
+{%endblock%}

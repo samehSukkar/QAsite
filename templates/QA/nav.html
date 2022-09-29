@@ -1,0 +1,34 @@
+  <!-- navbar start -->
+    <nav class="navbar  navbar-expand-lg bg-primary">
+        <div class="container">
+          <a class="navbar-brand" href="#">QuestionMark</a>
+          <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon "></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-3 ms-auto mb-2 mb-lg-0 align-items-lg-center">
+              <li class="nav-item mx-2">
+                <a class="nav-link active p-2 p-lg-3" aria-current="page" href="#">Home</a>
+              </li>
+             
+              <li class="nav-item  dropdown mx-2">
+                <a class="nav-link dropdown-toggle  p-2 p-lg-3" href="{% url 'categories'%}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Categories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {%for c in category_list %}
+                  <li><a class="dropdown-item" href="{% url 'category' c.name %}">{{c.name}}</a></li>
+                  {%endfor %}
+                  <div class="dropdown-divider"></div>
+                  <li><a class="dropdown-item" href="{% url 'categories' %}">show all</a></li>
+                </ul>
+              </li>
+              <li class="nav-item mx-2">
+                <a class="btn  rounded-pill login-btn " aria-current="page" href="#">Login</a>
+              </li>
+            </ul>
+                       
+          </div>
+        </div>
+      </nav>
+    <!-- navbar end -->

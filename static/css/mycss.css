@@ -1,0 +1,67 @@
+
+.top-section
+{
+   min-height: calc(100vh - 58px);
+}
+
+
+.navbar .navbar-nav .nav-link , .navbar-brand 
+{
+    color: white;
+    
+}
+.login-btn {
+    color: white;
+    background-color: #0b2a6b;
+}
+.login-btn:hover {
+   
+    color : #0b2a6b;
+    background-color: white;
+}
+
+.navbar .navbar-nav .nav-link:hover
+{
+    color : #0b2a6b;
+}
+
+.navbar .navbar-toggler:focus {
+    box-shadow: none;
+}
+/*
+.navbar .navbar-nav .nav-link.active
+{
+   
+    font-weight: bold;
+    border-bottom: 1px solid #e1f3fd;
+       
+}
+*/
+
+.qoute , .categories-section h3 
+{
+    font-family: 'Fjalla One', sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.categories-section
+{
+    background-color: #e1f3fd;
+}
+.categories-section h3 
+{
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    font-size: 3rem;
+    color:#0b2a6b;
+}
+
+.card img {
+    height: 190px;
+}
+
+.search-section {
+    
+    background-image: url("../images/qm-blue.png");
+    background-size: 200px;
+}

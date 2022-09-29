@@ -1,0 +1,59 @@
+
+  {% extends 'QA\\base.html' %}
+    {%load static%}
+    {%block content %}
+
+    
+    <!-- top section -->
+    <div class="container ">
+        <div class="row top-section justify-content-center ">
+            <div class="col-12 col-sm-10 col-md-8 col-xl-7 col-xxl-6 d-flex align-items-end">
+              <img class="img-fluid" id="main-img" src="{% static 'images/5167172.jpg' %}" alt="">
+            </div>
+           <div class="col-12 col-md-10 col-lg-4  d-flex flex-column justify-content-center align-items-center ">
+            <p class="text-center qoute py-3 py-lg-5 px-2 ">
+              “ He who asks a question is a fool for five minutes; he who does not ask a question remains a fool forever ”
+            </p>
+           <button class="btn-primary py-3 px-4 mb-4 rounded-pill">Ask A Question</button>
+           </div>
+           
+        </div>
+    </div>
+    <!-- end top section -->
+    
+    <!-- categories -->
+    <div class="categories-section">
+      <div class="container py-5 text-center">
+        <h3>categories</h3>
+        <div class="row ">
+
+          {% for cat in category_list%}
+          
+            <div class="col-md-6 col-lg-4 col-xxl-3 my-4">
+              <div  class="card mx-auto" style="width: 18rem;">
+                <img src="{{cat.image.url}}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                  <a href="#" class="stretched-link text-decoration-none text-dark text-uppercase"> <h5 class="card-title"> {{cat.name}} </h5> </a>                  
+                </div>
+              </div>
+            </div>
+
+          {%endfor%}
+           
+
+        </div>
+        <!--end roow -->
+      </div>
+    </div>
+     <!-- end categories -->
+
+     <div class="search-section py-5 text-center">
+      <div class="container bg-light p-3">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search For Questions" aria-label="Search">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  {% endblock %}
+     

@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return HttpResponse("hello")
+    return render(request , "QA\\home.html")
 
 
 
@@ -66,10 +66,11 @@ def add_question(request):
 
 
 
+
+
 def category(request , category_name):
 
    questions = Question.objects.filter(category__name=category_name)
-
 
    return render(request , 'QA\\category.html', { 'cat':category_name , 'questions':questions })
 
@@ -81,3 +82,7 @@ def category(request , category_name):
 def category_list(request):
     categories = Category.objects.exclude(name="default")
     return {'category_list' : categories}
+
+
+def categories(request):
+    return render(request , "QA\\all_categories.html")
