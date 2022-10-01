@@ -1,31 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{question}}</h1>
-    <p>
-        {{question.text}}
-    </p>
-    <h3>answer{{ answers | pluralize}}</h3>
-    {% for ans in answers %}
+{%extends "QA\\base.html" %}
 
-        <h4>{{ans.author}}</h4>
-        <p>{{ans.text}}</p><br><br>
-    {%endfor%}
 
-    {% if   request.user.is_authenticated %}
+
+{%block content%}
+
+
+<style>
+    .answers-section   {
+        max-width: 700px;
+    }
+
+</style>
+    <div class="container h-custom py-3">
+
+        {% include "QA\\post.html"%}
+      
+
+        <div class="answers-section bg-light container p-5">
+            <h5>answer{{ answers | pluralize}}</h5>
+
+            
+            {% for ans in answers %}
+            
+            <div class="card pt-3 px-3 my-3">
+
+                <a  class="card-subtitle text-decoration-none text-black-50" href =""><h6>@{{ans.author.username}}</h6></a>
+                <p class="ps-2">{{ans.text}}</p>
+
+
+            </div>
+                {%endfor%}
+                
+            {% if   request.user.is_authenticated %}
+        
+        
+                <form method="post">
+                    {% csrf_token %}
+                
+                    <label for="id_text">write your answer</label>
+                    {{form.text}}
+                    <button class="btn btn-primary p-1">submit</button>
+                
+                </form>
+                {% endif %}
+
+        </div>
+        
+
+
+    </div>
+
+<script>
+
+    
+    
+    function displayReadmore()
+    {
+        
+        var a = document.getElementById("collapse-link{{question.id}}");
+        var p = document.getElementById("collapseSummary{{question.id}}");
+        if (p.offsetHeight <= 63 )
+        {
+            a.style.display="none"; 
+        }
+        else
+        {
+            a.style.display="block"; 
+        }
+        
+    }
+    
+    displayReadmore();
    
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button>submit</button>
-    </form>
-    {% endif %}
-   
-</body>
-</html>
+    var form_input = document.getElementById("id_text");
+    form_input.setAttribute('class', 'form-control my-3');
+    form_input.setAttribute('rows', '4');
+    
+    window.addEventListener('resize', (event) => {
+        
+        displayReadmore();
+            
+        });    
+        
+
+
+
+</script>
+
+
+{% endblock%}

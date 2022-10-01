@@ -1,14 +1,86 @@
 {% extends "QA\\base.html"%}
 
 {%block content %}
-<h3> this is {{ user.get_username }} profile</h3>
 
-{% for question in user.question_set.all %}
 
-<p> <a href ="{% url 'question' question.id %}">{{ forloop.counter }}    >>  {{question.title}}</a></p>
+
+
+<div class="container h-custom bg-light p-4 my-2">
+    <div class="p-5 w-custom mx-auto">
+        <h5 class="mb-4">Add A New Question</h5>
+        <form method="post">
+            {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Title</label>
+                        {{form.title}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Question</label>
+                        {{form.text}}
+                    </div>
+                    <div class="mb-3">
+                        
+                        {{form.category}}
+                    </div>
+                    <button class="btn btn-primary">submit</button>
+            </form>
+    </div>
+    {% if questions %}
+        <h5 class="text-center text-uppercase">your questions</h5>
+        {%for question in questions %}
+        
+            {% include "QA\\post.html" %}
+        
+        {%endfor%}
+    {%else%}
+    <h5 class="text-center text-capitalize">you have no questions yet...</h5>
+    {%endif%}
+</div>
+
+
+<script>
+
+
+    var form_text = document.getElementById("id_text");
+    form_text.setAttribute('class', 'form-control');
+    form_text.setAttribute('rows', '4');
+
+    var form_title = document.getElementById("id_title");
+    form_title.setAttribute('class', 'form-control ');
     
-{%endfor%}
+    var form_title = document.getElementById("id_category");
+    form_title.setAttribute('class', 'form-select ');
+    form_title.setAttribute('style', 'max-width:200px;');
+   
 
+function displayReadmore()
+{
+    {% for question in questions %}
+    var a = document.getElementById("collapse-link{{question.id}}");
+    var p = document.getElementById("collapseSummary{{question.id}}");
+    if (p.offsetHeight <= 63 )
+    {
+        a.style.display="none"; 
+    }
+    else
+    {
+        a.style.display="block"; 
+    }
+{%endfor%}
+}
+
+displayReadmore();
+
+window.addEventListener('resize', (event) => {
+    
+    displayReadmore();
+        
+ });    
+    
+
+
+
+</script>
 
 
 {%endblock%}

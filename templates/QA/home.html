@@ -14,7 +14,7 @@
             <p class="text-center qoute py-3 py-lg-5 px-2 ">
               “ He who asks a question is a fool for five minutes; he who does not ask a question remains a fool forever ”
             </p>
-           <button class="btn-primary py-3 px-4 mb-4 rounded-pill">Ask A Question</button>
+           <a class="btn btn-primary py-3 px-4 mb-4 rounded-pill" href="{% url 'add_question' %}" >Ask A Question</a>
            </div>
            
         </div>
@@ -24,7 +24,7 @@
     <!-- categories -->
     <div class="categories-section">
       <div class="container py-5 text-center">
-        <h3 class="pb-4">categories</h3>
+        <h3 class="pb-4">top categories</h3>
         <div class="row ">
 
           {% for cat in category_list|slice:":4"%}
@@ -49,8 +49,9 @@
 
      <div class="search-section py-5 text-center">
       <div class="container bg-light p-3">
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search For Questions" aria-label="Search">
+        <form class="d-flex"  action="/search" method="post">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Search For Questions" aria-label="Search" name="q">
           <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
       </div>

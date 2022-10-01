@@ -90,6 +90,35 @@ def categories(request):
 
 
 
-
+@login_required
 def profile(request):
-    return render(request , "QA\\profile.html")
+    
+    
+
+   
+    if request.method == 'POST':
+            form = QuestionForm(request.POST)
+            if form.is_valid():
+               question = form.save(commit=False)
+               question.author = request.user
+               question.save()
+
+
+    form = QuestionForm()           
+    profile_user = request.user
+    questions = Question.objects.filter(author = profile_user)
+    return render(request , "QA\\profile.html" , {'questions': questions , 'form':form} )
+
+
+
+def search(request):
+    if request.method == "POST":
+        q = request.POST['q']
+        questions = Question.objects.filter(title__contains= q ) | Question.objects.filter(text__contains= q  )
+        
+        return render(request , "QA\\search.html" , {'questions':questions})
+    else :
+      return render(request , "QA\\search.html")
+
+
+

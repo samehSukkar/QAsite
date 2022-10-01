@@ -1,0 +1,14 @@
+<div class="card mt-4 w-custom mx-auto">
+                
+    <div id="card-body" class="card-body p-4">
+        <a  class="card-subtitle text-decoration-none text-black-50" href =""><h6>@{{question.author.username}}</h6></a>
+        <a  class="card-title text-decoration-none text-dark" href ="{% url 'question' question.id %}">
+            <h4 class="mb-4" >{{question.title}}</h4>
+        </a>
+        <p class="collapse" id="collapseSummary{{question.id}}">
+         {{question.text}}
+        </p>
+        <a class="" id="collapse-link{{question.id}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSummary{{question.id}}" aria-expanded="false" aria-controls="collapseSummary{{q.id}}"></a>
+    </div>
+  
+</div>

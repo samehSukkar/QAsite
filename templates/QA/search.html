@@ -3,17 +3,17 @@
 {%block content%}
 
 
-    <div class="container h-custom bg-light p-4 my-2">
-        {% if questions %}
-            <h5 class="text-center text-uppercase">{{cat}}</h5>
-            {%for question in questions %}
-            
-                {% include "QA\\post.html" %}
-            
-            {%endfor%}
-        {%else%}
-           <h4 class="text-center text-capitalize">no questions yet...</h4>
-        {%endif%}
+<div class="container h-custom bg-light p-4 my-2">
+    {% if questions %}
+        
+        {%for question in questions %}
+        
+            {% include "QA\\post.html" %}
+        
+        {%endfor%}
+    {%else%}
+        <h3>No Questions Yet...</h3>
+    {%endif%}
 </div>
 
 

@@ -19,6 +19,9 @@ from django.urls import include, path
 from . import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views 
+from django.contrib.auth import forms as auth_forms
+from django.contrib.auth.models import User
+from django.views.generic import CreateView , TemplateView
 import QA
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
@@ -27,6 +30,12 @@ urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(redirect_authenticated_user=True , next_page = None ) , name="user-login" ),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page = "user-login") , name= "logout"),
     path('accounts/profile/', QA.views.profile , name= "profile"),
+    path('accounts/register/', CreateView.as_view(model = User ,
+                                                 form_class = auth_forms.UserCreationForm ,
+                                                 success_url = "/accounts/welcome" , 
+                                                 template_name = "registration\\register.html" ) , name= "register"),
+
+    path('accounts/welcome', TemplateView.as_view(template_name = "registration\\welcome.html") , name="welcome")
 
 ]
 

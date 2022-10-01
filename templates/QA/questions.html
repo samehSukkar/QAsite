@@ -1,19 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {%for c in category_list %}
-    <p> <a href ="{% url 'category' c.name %}">{{ forloop.counter }}    >>  {{c.name}}</a></p>
-        
+{% extends "QA\base.html" %}
+{% block content %}
+
+
+<div class="container h-custom bg-light p-4 my-2">
+        {%for question in questions %}
+
+        {% include "QA\\post.html" %}
+      
+            
+        {%endfor%}
+</div>
+
+<script>
+    
+    function displayReadmore()
+    {
+        {% for question in questions %}
+        var a = document.getElementById("collapse-link{{q.id}}");
+        var p = document.getElementById("collapseSummary{{q.id}}");
+        if (p.offsetHeight <= 63 )
+        {
+            a.style.display="none"; 
+        }
+        else
+        {
+            a.style.display="block"; 
+        }
     {%endfor%}
-    {%for q in questions %}
-    <p> <a href ="{% url 'question' q.id %}">{{ forloop.counter }}    >>  {{q.title}}</a></p>
+    }
+
+    displayReadmore();
+    
+    window.addEventListener('resize', (event) => {
         
-    {%endfor%}
-</body>
-</html>
+        displayReadmore();
+            
+     });    
+        
+
+
+
+</script>
+{%endblock%}
