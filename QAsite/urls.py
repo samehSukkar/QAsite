@@ -27,9 +27,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls , name = "admin"),
     path('', include('QA.urls')),
-    path('accounts/login/', auth_views.LoginView.as_view(redirect_authenticated_user=True , next_page = None ) , name="user-login" ),
+
+    path('accounts/login/', auth_views.LoginView.as_view(redirect_authenticated_user=True ) , name="user-login" ),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page = "user-login") , name= "logout"),
     path('accounts/profile/', QA.views.profile , name= "profile"),
+    
     path('accounts/register/', CreateView.as_view(model = User ,
                                                  form_class = auth_forms.UserCreationForm ,
                                                  success_url = "/accounts/welcome" , 
